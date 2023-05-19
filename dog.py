@@ -51,10 +51,16 @@ dog.penup()
 # screen.addshape(sprite)
 # dog.shape(sprite)
 
+def walk():
+    turtle.clear()
+    turtle.screensize(1000,500)
 
 def up():
     dog.setheading(90)
     dog.forward(100)
+    x,y = tim.position()
+    if tim.ycor() >= 600:
+        walk()
 
 def down():
     dog.setheading(270)
