@@ -51,28 +51,38 @@ dog.penup()
 # screen.addshape(sprite)
 # dog.shape(sprite)
 
-def walk():
-    turtle.clear()
-    turtle.screensize(1000,500)
-
 def up():
     dog.setheading(90)
     dog.forward(100)
     x,y = tim.position()
     if tim.ycor() >= 600:
-        walk()
+        screen.setup(1000,500)
+        tim.setpos(-350,10)
+        #WALK GAME HERe
 
 def down():
     dog.setheading(270)
     dog.forward(100)
+    if tim.ycor() <= 0:
+        screen.setup(500,500)
+        tim.setpos(100,100)
+        #TRICK GAME?
 
 def left():
     dog.setheading(180)
     dog.forward(100)
+    if tim.xcor() <= 0:
+        print("LEFT BORDER CODE")
+        tim.setpos(0 , tim.ycor)
+        #UPDATE WATER OR HUNGER
 
 def right():
     dog.setheading(0)
     dog.forward(100)
+    if tim.xcor() <= 1000:
+        print("LEFT BORDER CODE")
+        tim.setpos(1000 , tim.ycor)
+        #UPDATE WATER OR HUNGER
 
 def Upright():
     dog.setheading(45)
