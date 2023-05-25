@@ -56,32 +56,48 @@ def up():
     tim.forward(100)
     x,y = tim.position()
     if tim.ycor() >= 600:
-        screen.setup(1000,500)
-        tim.setpos(-350,10)
+        UP_PAGE = True
+        DOWN_PAGE = False
+        LEFT_PAGE = False
+        RIGHT_PAGE = False
+        if UP_PAGE == True:
+            screen.setup(1000,500)
+            tim.setpos(-350,10)
         #WALK GAME HERe
+        #FALSIFY UP PAGE
 
 def down():
     tim.setheading(270)
     tim.forward(100)
-    if tim.ycor() <= 0:
-        screen.setup(500,500)
-        tim.setpos(100,100)
+    if tim.ycor() <= -1000:
+        UP_PAGE = False
+        DOWN_PAGE = True
+        LEFT_PAGE = False
+        RIGHT_PAGE = False
+        if DOWN_PAGE == True:
+            screen.setup(1000, 500)
+            tim.setpos(-350, 10)
         #TRICK GAME?
 
 def left():
     tim.setheading(180)
     tim.forward(100)
-    if tim.xcor() <= 0:
-        print("LEFT BORDER CODE")
-        tim.setpos(0 , tim.ycor)
+    if tim.xcor() <= -1000:
+        UP_PAGE = False
+        DOWN_PAGE = False
+        LEFT_PAGE = True
+        RIGHT_PAGE = False
+        if LEFT_PAGE == True:
+            screen.setup(1000, 500)
+            tim.setpos(-350, 10)
         #UPDATE WATER OR HUNGER
 
 def right():
     tim.setheading(0)
     tim.forward(100)
     if tim.xcor() <= 1000:
-        print("LEFT BORDER CODE")
-        tim.setpos(1000 , tim.ycor)
+        screen.setup(500, 5000)
+        tim.setpos(100, 100)
         #UPDATE WATER OR HUNGER
 
 def Upright():
