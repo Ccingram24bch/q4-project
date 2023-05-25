@@ -41,8 +41,8 @@ def Petchoice():
 Petchoice()
 
 screen = turtle.Screen()
-dog = turtle.Turtle()
-dog.penup()
+tim = turtle.Turtle()
+tim.penup()
 
 
 # sprite integration
@@ -52,8 +52,8 @@ dog.penup()
 # dog.shape(sprite)
 
 def up():
-    dog.setheading(90)
-    dog.forward(100)
+    tim.setheading(90)
+    tim.forward(100)
     x,y = tim.position()
     if tim.ycor() >= 600:
         screen.setup(1000,500)
@@ -61,55 +61,55 @@ def up():
         #WALK GAME HERe
 
 def down():
-    dog.setheading(270)
-    dog.forward(100)
+    tim.setheading(270)
+    tim.forward(100)
     if tim.ycor() <= 0:
         screen.setup(500,500)
         tim.setpos(100,100)
         #TRICK GAME?
 
 def left():
-    dog.setheading(180)
-    dog.forward(100)
+    tim.setheading(180)
+    tim.forward(100)
     if tim.xcor() <= 0:
         print("LEFT BORDER CODE")
         tim.setpos(0 , tim.ycor)
         #UPDATE WATER OR HUNGER
 
 def right():
-    dog.setheading(0)
-    dog.forward(100)
+    tim.setheading(0)
+    tim.forward(100)
     if tim.xcor() <= 1000:
         print("LEFT BORDER CODE")
         tim.setpos(1000 , tim.ycor)
         #UPDATE WATER OR HUNGER
 
 def Upright():
-    dog.setheading(45)
-    dog.forward(100)
+    tim.setheading(45)
+    tim.forward(100)
 
 def Upleft():
-    dog.setheading(135)
-    dog.forward(100)
+    tim.setheading(135)
+    tim.forward(100)
 
 def Downleft():
-    dog.setheading(225)
-    dog.forward(100)
+    tim.setheading(225)
+    tim.forward(100)
 
 def Downright():
-    dog.setheading(315)
-    dog.forward(100)
+    tim.setheading(315)
+    tim.forward(100)
 
 
 colors = ["red", "blue", "green", "yellow", "black"]
 
 
 def clickLeft(x, y):
-    dog.color(random.choice(colors))
+    tim.color(random.choice(colors))
 
 
 def clickRight(x, y):
-    dog.stamp()
+    tim.stamp()
 
 
 turtle.listen()
@@ -130,8 +130,8 @@ turtle.onkey(Downright, '/')
 turtle.mainloop()
 
 #creating images of the Shi Tzu and the Grass background
-dog = turtle.Turtle()
-dog.penup()
+tim = turtle.Turtle()
+tim.penup()
 screen = turtle.Screen()
 screen.setup(1000,1000)
 image = 'test.gif'
@@ -139,6 +139,6 @@ screen.addshape(image)
 screen.bgpic(image)
 image1 = 'Dog1.gif'
 screen.addshape(image1)
-dog.shape(image1)
+tim.shape(image1)
 
-dog.speed(10)
+tim.speed(10)
