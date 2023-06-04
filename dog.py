@@ -13,54 +13,58 @@ print("Diagonal Controls-  : key is up/left. ' key is up/right.  / is down right
 breed = {'Yellow Lab', 'Black Lab', 'German Shepherd', 'Shih Tzu'}
 
 class Dog:
-    def __init__(self, name, happiness, max_health, current_health, max_hunger, current_hunger, max_thirst, current_thirst, x, y, breed):
+    def __init__(self, name="", max_health=100, current_health=100, max_hunger=100, current_hunger=100, max_thirst=100, current_thirst=100, breed="", activity=0):
         self.name = name
-        self.max_health = 100
-        self.current_health = 100
-        self.max_hunger = 100
-        self.current_hunger = 100
-        self.max_thirst = 100
-        self.current_thirst = 100
-        self.x = x
-        self.y = y
+        self.max_health = max_health
+        self.current_health = current_health
+        self.max_hunger = max_hunger
+        self.current_hunger = current_hunger
+        self.max_thirst = max_thirst
+        self.current_thirst = current_thirst
+        # self.x = x
+        # self.y = y
         self.breed = breed
-        self.activity = "main"
+        self.activity = activity
 
 def create_page_main():
     screen = turtle.Screen()
     screen.title("Main Grass")
     screen.bgcolor("light green")
     screen.setup(width=WIDTH, height=HEIGHT)
-    image = 'test.gif'
-    screen.addshape(image)
-    screen.bgpic(image)
+    #image = 'test.gif'
+    #screen.addshape(image)
+    #screen.bgpic(image)
 
-def create_page_walk():
+def create_page_fetch():
     screen = turtle.Screen()
-    screen.title("Walk")
-    screen.bgcolor("white")
-    image = 'test.gif'
-    screen.addshape(image)
-    screen.bgpic(image)
+    screen.title("Fetch")
+    screen.bgcolor("blue")
+    #image = 'test.gif'
+    #screen.addshape(image)
+    #screen.bgpic(image)
  
 def create_page_food():
     screen = turtle.Screen()
     screen.title("Food")
-    screen.bgcolor("white")
-    image = 'test.gif'
-    screen.addshape(image)
-    screen.bgpic(image)
+    screen.bgcolor("brown")
+    #image = 'test.gif'
+    #screen.addshape(image)
+    #screen.bgpic(image)
  
 def switch_page(new_page):
-    if new_page == "walk":
-        create_page_walk()
-        dog.setpos(-500,0)
+    if new_page == "fetch":
+        create_page_fetch()
+        dog.setpos(0,0)
     elif new_page == "food":
         create_page_food()
+        dog.setpos(0,0)
+    else:
+        create_page_main()
         dog.setpos(0,0)
 
 
 petBreed = ""
+dog_state = Dog()
 
 while petBreed not in breed:
     print(breed)
@@ -71,17 +75,19 @@ while petBreed not in breed:
         petBreed = "Shih Tzu"
     #testing end
 
+    dog_state.breed = petBreed
+
     if petBreed == "Shih Tzu":
         dog = turtle.Turtle()
         dog.penup()
         screen = turtle.Screen()
         screen.setup(1000, 1000)
-        image = 'grass.gif'
-        screen.addshape(image)
-        screen.bgpic(image)
-        image1 = 'Tinydog.gif'
-        screen.addshape(image1)
-        dog.shape(image1)
+        #image = 'grass.gif'
+        #screen.addshape(image)
+        #screen.bgpic(image)
+        #image1 = 'Tinydog.gif'
+        #screen.addshape(image1)
+        #dog.shape(image1)
         dog.speed('fastest')
 
     elif petBreed == "German Shepherd":
@@ -89,12 +95,12 @@ while petBreed not in breed:
         dog.penup()
         screen = turtle.Screen()
         screen.setup(1000, 1000)
-        image = 'grass.gif'
-        screen.addshape(image)
-        screen.bgpic(image)
-        image1 = 'GermanShepherd.gif'
-        screen.addshape(image1)
-        dog.shape(image1)
+        #image = 'grass.gif'
+        #screen.addshape(image)
+        #screen.bgpic(image)
+        #image1 = 'GermanShepherd.gif'
+        #screen.addshape(image1)
+        #dog.shape(image1)
         dog.speed('fastest')
 
     elif petBreed == "Black Lab":
@@ -102,12 +108,12 @@ while petBreed not in breed:
         dog.penup()
         screen = turtle.Screen()
         screen.setup(1000, 1000)
-        image = 'grass.gif'
-        screen.addshape(image)
-        screen.bgpic(image)
-        image1 = 'Blacklab.gif'
-        screen.addshape(image1)
-        dog.shape(image1)
+        #image = 'grass.gif'
+        #screen.addshape(image)
+        #screen.bgpic(image)
+        #image1 = 'Blacklab.gif'
+        #screen.addshape(image1)
+        #dog.shape(image1)
         dog.speed('fastest')
 
     elif petBreed == "Yellow Lab":
@@ -115,12 +121,12 @@ while petBreed not in breed:
         dog.penup()
         screen = turtle.Screen()
         screen.setup(1000, 1000)
-        image = 'grass.gif'
-        screen.addshape(image)
-        screen.bgpic(image)
-        image1 = 'yellow.gif'
-        screen.addshape(image1)
-        dog.shape(image1)
+        #image = 'grass.gif'
+        #screen.addshape(image)
+        #screen.bgpic(image)
+        #image1 = 'yellow.gif'
+        #screen.addshape(image1)
+        #dog.shape(image1)
         dog.speed('fastest')
 
 def up():
@@ -139,14 +145,34 @@ def down():
 def left():
     dog.setheading(180)
     dog.forward(75)
+    print(dog_state.activity)
     if dog.xcor() < -WIDTH / 2:
-        switch_page("walk")
+        if dog_state.activity == 0:
+            print("GOING LEFT 1")
+            dog_state.activity = 1
+            switch_page("food")
+        elif dog_state.activity == 1:
+            print("GOING LEFT 2")
+            dog_state.activity = 0
+            switch_page("main")
+        elif dog_state.activity == 2:
+            dog_state.activity = 0
+            switch_page("main")
 
 def right():
     dog.setheading(0)
     dog.forward(75)
+    print(dog_state.activity)
     if dog.xcor() > WIDTH / 2:
-        switch_page("walk")
+        if dog_state.activity == 0:
+            print("GOING RIGHT 1")
+            dog_state.activity = 2
+            switch_page("fetch")
+        elif dog_state.activity == 1:
+            print("GOING RIGHT 2")
+            dog_state.activity = 0  
+            switch_page("main")
+            
 
 def Upright():
     dog.setheading(45)
@@ -174,7 +200,5 @@ turtle.onkey(Upright, "'")
 turtle.onkey(Upleft, ";")
 turtle.onkey(Downleft, '.')
 turtle.onkey(Downright, '/')
-
-
 
 turtle.mainloop()
